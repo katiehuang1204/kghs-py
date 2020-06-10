@@ -1,0 +1,37 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib
+from IPython import display
+plt.figure(figsize=(16,9),dpi=600)
+twfont1=matplotlib.font_manager.FontProperties(fname="drive/My Drive/python/data/DFT_XK5.TTC")
+
+def f(x):
+  return(x**4-38*x**2-48*x+24)
+def f1(x):
+  return(4*x**3-76*x-48)
+def f2(x):
+  return 0*x
+x=np.linspace(-7,7,1400)
+y=f(x)
+y1=f1(x)
+y2=f2(x)
+
+x_point=6
+ETA=0.001
+step_x=[]
+step_y=[]
+for i in range(100):
+  x_point=x_point-ETA*f1(x_point)
+  step_x.append(x_point)
+  step_y.append(f(x_point))
+  plt.plot(x_point,f(x_point),".",color="#512DA8")
+
+
+plt.title("Matplotlib 範例",fontproperties=twfont1,fontsize=35,color="#77DDFF")
+plt.xlabel("x 軸標題",fontproperties=twfont1,fontsize=15,color="#77DDFF")
+plt.ylabel("y 軸標題",fontproperties=twfont1,fontsize=15,color="#77DDFF")
+plt.plot(x,y,color="#376B6D")
+plt.plot(x,y1,color="#4798B3")
+plt.plot(x,y2,color="#cccccc")
+plt.show()
+
